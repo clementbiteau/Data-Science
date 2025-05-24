@@ -56,6 +56,10 @@ STEPS
     - Scaling/Normalizing numeric features 
 
 3. Model Building
-4. Evaluation & Tuning
-5. SHAP Interpretability
-6. Business Insights
+    - Split Data
+    - Train Models
+    - Evaluate Models
+    - Tuning and Perfomance
+    
+4. SHAP Interpretability
+5. Business Insights
