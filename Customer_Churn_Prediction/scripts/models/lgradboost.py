@@ -2,8 +2,8 @@ import lightgbm as lgb
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
 def LGB(df):
@@ -14,6 +14,18 @@ def LGB(df):
     
     model = lgb.LGBMClassifier(class_weight='balanced', num_leaves=31, learning_rate=0.05, n_estimators=100)
     model.fit(X_train, y_train)
+    
+    # Get 80% top predicted churners (for theoretical budget purposes)
+    churn_probs = model.predict_proba(X_test)[:, 1]
+    prob_df = X_test.copy()
+    prob_df['Actual_Churn'] = y_test
+    prob_df['Predicted_Prob_Churn'] = churn_probs
+
+    prob_df_sorted = prob_df.sort_values(by='Predicted_Prob_Churn', ascending=False)
+
+    top_80_percent = int(0.8 * len(prob_df_sorted))
+    top_churn_risk_clients = prob_df_sorted.head(top_80_percent)
+    top_churn_risk_clients.to_csv("data/top_churners/top_80_percent_churners.csv", index=False)
 
     y_pred = model.predict(X_test)
     

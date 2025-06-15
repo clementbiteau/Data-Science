@@ -5,7 +5,6 @@ from scripts.models.logistic_regression import logistic_regression
 from scripts.models.random_forest import random_forest
 from scripts.models.xgboost import xgboost
 from scripts.models.lgradboost import LGB
-from scripts.models.catboost import catboost
 
 sep = "------------------------------"
 
@@ -43,8 +42,6 @@ def main():
     model = LGB(df_clean)
     
     print(sep)
-    print("Training Cat Boost")
-    model = catboost(df_clean)
     return 0
 
 if __name__ == "__main__":
