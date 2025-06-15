@@ -1,3 +1,20 @@
+PROJECT_NAME := $(notdir $(CURDIR))
+DATE := $(shell date "+%Y-%m-%d")
+AUTHOR := Clément Biteau
+
+define HEADER
+############################################################
+
+$(PROJECT_NAME) by $(AUTHOR)
+
+$(DATE)
+
+Source: Kaggle Telco Customer Churn Prediction
+
+############################################################
+endef
+$(info $(HEADER))
+
 PYTHON := python3
 
 MAIN := main.py
