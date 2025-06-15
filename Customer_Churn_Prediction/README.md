@@ -14,7 +14,6 @@ Tools:
     XGBoost
     LGBoost
     RandomForest
-    CatBoost
     VS Code
 
 Objective:
